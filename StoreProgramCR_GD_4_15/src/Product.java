@@ -24,12 +24,13 @@ public class Product
 		this.effects = effects;
 	}
 
-	public String getProductName() {
+
+	public String getProduct() {
 		return product;
 	}
 
 
-	public void setProductName (String product) {
+	public void setProduct(String product) {
 		this.product = product;
 	}
 
