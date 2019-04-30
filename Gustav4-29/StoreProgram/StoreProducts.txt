@@ -1,20 +1,20 @@
 Nitrous Oxide
-1
+1.65
 5
-Makes you laugh
-Not flammable
+2
+1.1
 Sulfur Hexafluoride
-1
+1.13
 5
-Makes you sound like Darth Vader
-Flammable
+3
+8.3
 Dihydrogen Dioxide
-1
+1.84
 5
-Not good for your health
-Flammable
+8
+93.5
 Carbon Monoxide
-1
+1.23
 5
-Not good for your health
-Comes with complementary breathing mask in case of emergency
+7
+56.2

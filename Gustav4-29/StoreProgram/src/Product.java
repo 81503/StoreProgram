@@ -1,27 +1,27 @@
 public class Product
 {
 	private String product;
-	private int pricePerGram;
+	private float pricePerKGram;
 	private int quantity;
-	private String effects;
-	private String flammable;
+	private int rating;
+	private float temp;
 	public String getProduct;
 	
 	public Product() {
 		super();
 		product = "null";
-		pricePerGram = -1;
+		pricePerKGram = -1;
 		quantity = -1;
-		effects = "null";
+		rating = -1;
 	}
 	
 
 	public Product(String product, float pricePerKGram, int quantity, String effects) {
 		super();
 		this.product = product;
-		this.pricePerGram = pricePerGram;
+		this.pricePerKGram = pricePerKGram;
 		this.quantity = quantity;
-		this.effects = effects;
+		this.rating = rating;
 	}
 
 	public String getProductName() {
@@ -34,13 +34,13 @@ public class Product
 	}
 
 
-	public int getPricePerGram() {
-		return pricePerGram;
+	public float getPricePerKGram() {
+		return pricePerKGram;
 	}
 
 
-	public void setPricePerGram(int pricePerGram) {
-		this.pricePerGram = pricePerGram;
+	public void setPricePerKGram(float pricePerKGram) {
+		this.pricePerKGram = pricePerKGram;
 	}
 
 
@@ -54,30 +54,30 @@ public class Product
 	}
 
 
-	public String getEffects() {
-		return effects;
+	public int getRating() {
+		return rating;
 	}
 
 
-	public void setEffects(String effects) {
-		this.effects = effects;
+	public void setRating(int rating) {
+		this.rating = rating;
 	}
 
 
-	public String getFlammable() {
-		return flammable;
+	public float getTemp() {
+		return temp;
 	}
 
 
-	public void setFlammable(String Flammable) {
-		this.flammable = Flammable;
+	public void setTemp(float temp) {
+		this.temp = temp;
 	}
 
 
 	@Override
 	public String toString() {
-		return "\nProduct : " + product + ", \nPricePerGram : " + pricePerGram + ", \nQuantity : " + quantity
-				+ "\n" + effects + ", " + flammable;
+		return "\nProduct : " + product + ", \nPricePerGram : " + pricePerKGram + ", \nQuantity : " + quantity
+				+ "\n" + rating + ", " + temp;
 	}
 
 	

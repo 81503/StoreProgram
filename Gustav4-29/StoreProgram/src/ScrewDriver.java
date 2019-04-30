@@ -12,7 +12,7 @@ import java.io.IOException;
 
 public class ScrewDriver
 {
-	public static final int PROD_NUMS_INIT = 5;
+	public static final int PROD_NUMS_INIT = 4;
 	public static final int PROD_SLOTS = 10;
 	public static java.io.File txtProducts;
 	public static Scanner inputFile;
@@ -28,8 +28,8 @@ public class ScrewDriver
 		String productName[] = new String [PROD_SLOTS];
 		int productStock[] = new int [PROD_SLOTS];
 		float productPrice[] = new float [PROD_SLOTS];
-		String productEffects[] = new String [PROD_SLOTS];
-		String productFlammability[] = new String [PROD_SLOTS];
+		int productRating[] = new int [PROD_SLOTS];
+		float productTemp[] = new float [PROD_SLOTS];
 		
 		Product p = new Product ( );
 		int prodNums = PROD_NUMS_INIT;
@@ -39,24 +39,24 @@ public class ScrewDriver
 		while ( inputFile.hasNext ( ))
 		{
 			p.setProductName ( inputFile.nextLine ( ) );
-			productName[i] = p.getProductName();
-			p.setPricePerGram ( Integer.parseInt ( inputFile.nextLine ( ) ) );
-			productPrice[i] = p.getPricePerGram ( );
+			productName[i] = p.getProductName(); //System.out.println(productName[i]);
+			p.setPricePerKGram ( Float.parseFloat ( inputFile.nextLine ( ) ) );
+			productPrice[i] = p.getPricePerKGram ( ); //System.out.println(productPrice[i]);
 			p.setQuantity ( Integer.parseInt ( inputFile.nextLine ( ) ) );
-			productStock[i] = p.getQuantity();
-			p.setEffects ( inputFile.nextLine ( ) );
-			productEffects[i] = p.getEffects ( );
-			p.setFlammable ( inputFile.nextLine ( ) );
-			productFlammability[i] = p.getFlammable();
+			productStock[i] = p.getQuantity(); //System.out.println(productStock[i]);
+			p.setRating ( Integer.parseInt ( inputFile.nextLine ( ) ) );
+			productRating[i] = p.getRating ( ); //System.out.println(productRating[i]);
+			p.setTemp ( Float.parseFloat ( inputFile.nextLine ( ) ) );
+			productTemp[i] = p.getTemp(); //System.out.println(productTemp[i]);
 			productArray[i] = p;
+			//System.out.println ( p.toString ( ) );
 			i++;
 		}
 
-		printStore(prodNums, productName, productPrice);
-		//System.out.print ( "\n\nIf you would like to add more items to our stock,"
-		//		+ "\nplease enter a name, and further details will be requested.\n" );
+		printStore(prodNums, productName, productPrice, productStock, productRating, productTemp);
 		
-		String productNamePlacer = userIn.nextLine ( );
+		/*
+		String productNamePlacer = userIn.nextLine ( )
 		for (int j = 0; j < (prodNums - 1); j++)
 		{
 			//System.out.println(productNamePlacer);
@@ -86,27 +86,17 @@ public class ScrewDriver
 	
 			System.out.println ( "\nWhat are the effects?" );
 			userIn.nextLine ( );
-			productEffects[prodNums] = userIn.nextLine ( );
-			System.out.println ( "The effects is/are " + productEffects );
+			productRating[prodNums] = userIn.nextInt( );
+			System.out.println ( "The effects is/are " + productRating );
 	
 			System.out.println ( "\nIs it flammable?" );
-			productFlammability[prodNums] = userIn.nextLine ( );
+			productTemp[prodNums] = userIn.nextFloat ( );
 			
-			while ( productFlammability.equals ( "no" ) || productFlammability.equals ( "yes" ) )
-			{
-				System.out.println ( "Are you sure?" );
-				productFlammability[prodNums] = userIn.nextLine ( );
-			}
-			if ( !productFlammability.equals ( "yes" ) || !productFlammability.equals ( "no" ) )
-			{
-				System.out.println ( "The product is probably explodable\n" );
-				productFlammability[prodNums] = "Explodable";
-			}
 			System.out.println ( "product name: " + productName );
 			System.out.println ( "product in stock: " + productStock );
 			System.out.println ( "product price: " + productPrice );
-			System.out.println ( "product effects: " + productEffects );
-			System.out.println ( "product flammability: " + productFlammability );
+			System.out.println ( "product effects: " + productRating );
+			System.out.println ( "product flammability: " + productTemp );
 			// addItems(productNamesArray, kgPricesArray, productStocksArray, descriptionsArray, numOfProducts);
 		}
 		else
@@ -115,6 +105,7 @@ public class ScrewDriver
 					+ "Adding to existing stock. How many kilograms are you adding?");
 			productStock[prodSelected] += userIn.nextInt ( );
 		}
+	*/
 	}
 
 	
@@ -146,54 +137,40 @@ public class ScrewDriver
 	
 	
 	
-
-	public static void itemCheck( )
+	
+	public static void printStore (
+			int prodNums,
+			String productName[],
+			float productPrice[],
+			int productStock[],
+			int productRating[],
+			float productTemp[])
 	{
-
-	}
-
-	
-	
-	
-	
-	public static void addItems // -->
-	( String productNamesArray[], float kgPricesArray[], int productStocksArray[], String descriptionsArray[],
-			int numOfProducts )
-	{
-		productNamesArray[numOfProducts] = userIn.nextLine ( );
-		System.out.println ( "What is the price (in USD) of " + productNamesArray[numOfProducts] + " per kilogram?" );
-		kgPricesArray[numOfProducts] = userIn.nextFloat ( );
-		System.out.println ( "How many kg of " + productNamesArray[numOfProducts] + " are you adding?" );
-		productStocksArray[numOfProducts] = userIn.nextInt ( );
-		System.out.println ( "What is your desired description?" );
-		descriptionsArray[numOfProducts] = userIn.nextLine ( );
-
-		// TODO : fix it skipping the line below
-		System.out.println ( descriptionsArray[numOfProducts] );
-		numOfProducts++;
-	}
-	
-	
-	
-	
-	
-	public static void printStore (int prodNums, String productName[], float productPrice[])
-	{
-		String mainRow = "+-----------------------------------------------------------------------------+";
-		String mainRow2 = "+-------------------------------+----------+-------+--------+-----------------+";
-		String emptyRow = "|                                                                             |";
+		String mainRow = "+-------------------------------------------------------------------------------+";
+		String mainRow2 = "+-------------------------------+----------+-------+--------+-------------------+";
+		String emptyRow = "|                                                                               |";
+		String emptyRow2 = "|                               |          |       |        |                   |";
+		float productTempF[] = new float [prodNums];
+		
+		for (int i = 0; i < prodNums; i++)
+		{
+			productTempF[i] = (float)(productTemp[i]*1.8) + 32;
+		}
 		
 		System.out.println(mainRow + "\n" + emptyRow +
-				"\n|                         Third State O' Matter Inc.                          |\n" +
+				"\n|                                Noble Gases Co.                                |\n" +
 				emptyRow + "\n" + mainRow2 + 
-				"\n|           Items for           |  Price   | Stock | Hazard |     Storing     |" +
-				"\n|             Sale              | (per kg) | (kg)  | Rating |   Temperature   |\n" +
-				mainRow2 + "\n" + emptyRow);
+				"\n|           Items for           |  Price   | Stock | Hazard |      Storing      |" +
+				"\n|             Sale              | (per kg) | (kg)  | Rating |    Temperature    |\n" +
+				mainRow2 + "\n" + emptyRow2);
 		for(int i = 0; i < prodNums; i++)
 		{
-		System.out.printf ("| %d" + ". %-26s | $%-7.2f |\n", i, productName[i], productPrice[i]);
+		System.out.printf ("| %d" + ". %-26s | $%-7.2f | %-5d | %02d/10  | %06.1f°C/%06.1f°F |\n" + emptyRow2 + "\n",
+				i, productName[i], productPrice[i], productStock[i], productRating[i], productTemp[i], productTempF[i]);
 		}
+		System.out.print(mainRow2 + "\n\n" + mainRow + 
+				"\n|             Choose the number of the item you wish to purchase                |\n" +
+				mainRow + "\n|\n|--> ");
 	}
-	
 
 }
